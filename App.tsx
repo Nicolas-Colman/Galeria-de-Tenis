@@ -7,6 +7,7 @@ import Registra from './screen/Registra';
 import Menu from './screen/Menu';
 import Logo from './screen/LogoAbertura';
 import Abertura from './screen/Abertura';
+import ManterTenis from './screen/ManterTenis';
 
 const Stack = createNativeStackNavigator();
 

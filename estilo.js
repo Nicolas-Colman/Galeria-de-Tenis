@@ -5,6 +5,7 @@ export default StyleSheet.create({
     tela:{
         flex: 1,
         alignItems: 'center',
+        marginTop: 40
 
     },
     telaH:{
@@ -15,6 +16,7 @@ export default StyleSheet.create({
 
     inputArea:{
         width: '80%',
+        marginTop: 40
     },
 
     buttonArea:{
@@ -133,6 +135,31 @@ export default StyleSheet.create({
         height: 200,
         marginTop: 50,
         marginBottom: 50
-    }
+    },
+    imagemTenis: {
+        width: 150,
+        height: 150,
+        borderRadius: 150/2,
+    },
+    imagemView:{
+        alignContent: "center",
+        alignItems: "center", 
+        marginBottom: 40
+    },
+
+    item : {
+        backgroundColor: 'white',
+        borderColor: '#0782F9',
+        borderWidth: 2,
+        borderRadius: 15,
+        padding: 20,
+        marginVertical: 8,
+    },
+    titulo: {
+        fontSize: 16,
+        color: '#0782F9',
+        fontWeight: '500'
+    },
+
 
 });

@@ -7,10 +7,10 @@ import estilo from "../estilo.js";
 
 const Login = () => {
 
-   
-    return (
-        <View style={estilo.tela}>
-         <Text>
+
+  return (
+    <View style={estilo.tela}>
+      <Text>
         Serie A
       </Text>
 
@@ -18,13 +18,9 @@ const Login = () => {
         source={require('../assets/Logo.png')}
         style={estilo.logoAbertura}
       />
+    </View>
 
-      <Text>
-        serie b
-      </Text>
-      </View>
-       
-    )
+  )
 }
 
 export default Login;

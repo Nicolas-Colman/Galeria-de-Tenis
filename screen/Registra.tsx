@@ -1,12 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { auth, firestore } from "../firebase";
-import {KeyboardAvoidingView, ScrollView, TouchableOpacity, Text, View, TextInput, Image, Platform,} from "react-native";
+import { KeyboardAvoidingView, ScrollView, TouchableOpacity, Text, View, TextInput, Image, Platform, Button, Pressable } from "react-native";
 import estilo from "../estilo";
 import { Usuario } from "../model/Usuario";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 
 const Registra = () => {
     const [formUsuario, setFormUsuario] = useState<Partial<Usuario>>({});
+    const [data, setData] = useState(new Date());
     const navigation = useNavigation();
 
     const refUsuario = firestore.collection("Usuario");
@@ -38,6 +40,21 @@ const Registra = () => {
         setFormUsuario({});
     };
 
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || data;
+        setData(currentDate);
+        setFormUsuario({ ...formUsuario, dataNasc: currentDate.toLocaleDateString() });
+    };
+
+    const showDatePicker = () => {
+        DateTimePickerAndroid.open({
+            value: data,
+            mode: 'date',
+            is24Hour: true,
+            onChange,
+        });
+    };
+
     return (
         <KeyboardAvoidingView
             style={estilo.tela}
@@ -48,10 +65,10 @@ const Registra = () => {
                     flexGrow: 1,
                     justifyContent: "center",
                     alignItems: "center",
-                  }}
-                  keyboardShouldPersistTaps="handled"
-                  showsVerticalScrollIndicator={false}
-                  showsHorizontalScrollIndicator={false}
+                }}
+                keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
             >
                 <View>
                     <Image source={require("../assets/Logo.png")} style={estilo.logo} />
@@ -99,6 +116,9 @@ const Registra = () => {
                             setFormUsuario({ ...formUsuario, dataNasc: texto })
                         }
                     />
+                    < TouchableOpacity style={estilo.botao} onPress={showDatePicker}>
+                    <Text style={estilo.botaoTexto}>Selecionar Nascimento</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={estilo.buttonArea}>
