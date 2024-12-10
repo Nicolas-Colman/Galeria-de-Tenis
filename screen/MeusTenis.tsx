@@ -55,7 +55,8 @@ const MeusTenis = () => {
     }
 
     const editTenis = (item: Tenis) =>{
-        navigation.navigate( 'Adicionar', {tenis: item})
+        navigation.navigate('Adicionar', { tenis: item });
+
     }
 
     const deleteTenis = async (item) => {
