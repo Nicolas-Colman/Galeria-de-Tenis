@@ -12,7 +12,7 @@ const ManterTenis = () => {
     const [loading, setLoading] = useState(true);
     const [atualizar, setAtualizar] = useState(true);
     const route = useRoute();
-    const { tenis } = route.params || {}; // Usar valor padrão se "tenis" for undefined
+    const { tenis } = route.params || {};
 
     const [imagePath, setImagePath] = useState('');
 
@@ -24,7 +24,6 @@ const ManterTenis = () => {
         const tenisData = new Tenis(formTenis);
 
         if (!tenisData.id) {
-            // Criar um novo tênis
             const refIdTenis = refTenis.doc();
             tenisData.id = refIdTenis.id;
 
@@ -32,12 +31,11 @@ const ManterTenis = () => {
                 .then(() => {
                     alert("Tênis adicionado com sucesso!");
                     Limpar();
-                    // Navegar de volta para a tela de listagem ou limpar o formulário
-                    navigation.navigate("Meus Tenis"); // Se quiser voltar para a tela anterior
+                   
+                    navigation.navigate("Meus Tenis");
                 })
                 .catch(error => alert(error.message));
         } else {
-            // Atualizar o tênis existente
             const refIdTenis = refTenis.doc(tenisData.id);
 
             refIdTenis.update(tenisData.toFirestore())
@@ -131,14 +129,14 @@ const ManterTenis = () => {
     useFocusEffect(
         useCallback(() => {
             if (tenis) {
-                setFormTenis(tenis); // Preencher os campos com os dados do tênis
-                if (tenis.urlfoto) {
-                    setImagePath(tenis.urlfoto); // Definir a foto, se houver
+                setFormTenis(tenis);
+                if (tenis.urlfoto) { 
+                    setImagePath(tenis.urlfoto); 
                 }
             } else {
                 setImagePath('');
                 Limpar();
-                setFormTenis({}); // Limpar o formulário se não houver dados de tênis
+                setFormTenis({});
             }
         }, [tenis])
     );
